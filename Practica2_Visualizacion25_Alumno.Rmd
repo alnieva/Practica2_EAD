@@ -226,6 +226,7 @@ head(Dosis.Medicina)
 Dosis.Medicina2 <- data.frame(Complemento=rep(c("Vitamina A", "Vitamina C"), each=3),
                 Dosis=rep(c("D0.5mg", "D1mg", "D2mg"),2),
                 Efectividad=c(6.8, 15, 33, 4.2, 10, 29.5))
+
 head(Dosis.Medicina2)
 ```
 
@@ -291,7 +292,19 @@ ggplot(data=Dosis.Medicina2, aes(x=Dosis, y=Efectividad, group=Complemento)) +
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio4.pdf``.
 
 ```{r Solucion ejercicio 4}
+load("data/Ejercicio4_Data.Rdata")
 
+grafico1_4<-ggplot(DatosEjer4,aes(x=Fecha, y=Ventas, color=Fabricante)) + geom_point()
+
+grafico2_4<-ggplot(DatosEjer4,aes(x=Fecha, y=Ventas, color=Fabricante)) +
+  geom_line(color="red", )
+
+grafico3_4<-ggplot(DatosEjer4, aes(x=Fecha, y=Ventas, color=Fabricante, linetype=Fabricante)) + geom_point() +
+  geom_line() + labs(title="Ventas mensuales de diferentes compañías tecnológicas")
+
+grafico3_4
+
+ggsave('figs/Ejercicio4.pdf')
 ```
 
 ## Barras de error con **ggplot2**
@@ -334,8 +347,14 @@ Añadir barras de error a un gráfico de línea.
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio5.pdf``.
 
 ```{r Solucion ejercicio 5}
+rm(list=ls())
+load("data/Experimento.Rdata")
 
+grafico1_5<-ggplot(Experimento, aes(x=Dosis, y=Altura, linetype=Complemento)) + geom_point()+geom_line()
 
+grafico1_6<-ggplot(Experimento, aes(x=Dosis, y=Altura, linetype=Complemento)) + geom_point()+geom_line()+geom_errorbar(aes(ymin=min(Experimento[['Error_Altura']]), ymax=max(Experimento[['Error_Altura']])))
+
+grafico1_6
 ```
 
 ### **Ejercicio 6 **
@@ -347,8 +366,15 @@ El fichero ``iceRiver.RData`` contiene información del caudal de dos ríos isla
   * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio5.pdf``.
 
 ```{r Solucion ejercicio 6 }
+rm(list=ls())
 
+load("data/iceRiver.Rdata")
 
+grafico1_6<-ggplot(ice.river.df, aes(x=time))+geom_line(aes(y=flow.vat,color='red'))+geom_line(aes(y=flow.jok,color='blue'))
+
+grafico1_6
+
+ggsave("figs/Ejercicio6.pdf")
 ```
 
 
