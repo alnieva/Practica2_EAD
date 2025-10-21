@@ -165,7 +165,7 @@ grafico3<-ggplot(ds, mapping=aes(x=MinTemp, y=MaxTemp, color=RainTomorrow)) + ge
 
 grafico3
 
-ggsave('figure/Ejercicio1.pdf')
+ggsave('figs/Ejercicio1.pdf')
 ```
 
 ### **Ejercicio 2**
@@ -178,9 +178,11 @@ ggsave('figure/Ejercicio1.pdf')
 
 ```{r Solucion ejercicio 2}
 
-#grafico1_2<- ggplot(ds, aes(x=Temp9am, y= Pressure9am))+geom_point()
+grafico1_2<- ggplot(ds, aes(x=Temp9am, y= Pressure9am, color=RainToday)) + geom_point() + labs(title="Gráfico dispersión 2", subtitle="Temp9am y Pressure9am", x="Temperatura a las 9am", y="Presión a las 9am", color="Llovio hoy?")
 
-ggsave('figure/Ejercicio2.pdf')
+grafico1_2
+
+ggsave('figs/Ejercicio2.pdf')
 ```
 
 ### **Ejercicio 3**
