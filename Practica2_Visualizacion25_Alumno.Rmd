@@ -197,8 +197,19 @@ ggsave('figs/Ejercicio2.pdf')
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio3.pdf``.
 
 ```{r Solucion ejercicio 3}
+load("data/iris_tidy.Rdata")
 
-ggsave('figure/Ejercicio3.pdf') # se almacena el último gráfico generado
+str(iris.tidy)
+
+iris.grafico1<-ggplot(iris.tidy, aes(x=Species, y=Value)) + geom_point()
+
+iris.grafico2<-ggplot(iris.tidy, aes(x=Species, y=Value, color=Part)) + geom_point()+ facet_grid(vars(Measure) )
+
+iris.grafico3<-ggplot(iris.tidy, aes(x=Species, y=Value, color=Part)) + geom_jitter() + facet_grid(vars(Measure) )
+
+iris.grafico3
+
+ggsave('figs/Ejercicio3.pdf') # se almacena el último gráfico generado
 ```
 
 ## Gráficos de línea con **ggplot2**
